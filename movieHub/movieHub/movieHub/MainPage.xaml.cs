@@ -6,6 +6,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Xamarin.Forms;
+using movieHub.Views.ListView;
 
 namespace movieHub
 {
@@ -13,7 +14,6 @@ namespace movieHub
     {
         private MovieService _api;
 
-        private List<MovieDetail> _movieDetail;
         public MainPage(MovieService api)
         {
             _api = api;
@@ -25,7 +25,7 @@ namespace movieHub
         private async void SearchButton_OnClicked(object sender, EventArgs e)
         {
             await _api.GetMovieByTitle(this.MovieTitle.Text);
-            this.MovieSearchLabel.Text = this._api.GetMovies()[0].title;
+            await this.Navigation.PushAsync(new MovieList(_api));
         }
 
 
