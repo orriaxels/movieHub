@@ -1,4 +1,5 @@
-﻿using System;
+﻿using MovieHub.Services;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -13,7 +14,7 @@ namespace movieHub
         {
             InitializeComponent();
 
-            MainPage = new movieHub.MainPage();
+            MainPage = new NavigationPage(new MainPage(new MovieService()));
         }
 
         protected override void OnStart()

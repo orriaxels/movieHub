@@ -5,9 +5,18 @@
              x:Class="movieHub.MainPage">
     <ContentPage.Content>
         <StackLayout>
-            <Label Text="Welcome to Xamarin.Forms!"
-                VerticalOptions="CenterAndExpand" 
-                HorizontalOptions="CenterAndExpand" />
+            <Label Text="Enter words in a movie title:"                
+                HorizontalOptions="Start" />
+            <Entry x:Name="MovieTitle"
+                   Placeholder="Enter movie title..." />
+            <Button x:Name="SearchButton"
+                    Text="Search!"
+                    BorderColor="Aqua"
+                    Clicked="SearchButton_OnClicked" />
+            <Label x:Name="MovieSearchLabel"
+                   Text="movie title"
+                   FontSize="Large" />
+
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>

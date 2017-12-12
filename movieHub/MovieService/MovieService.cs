@@ -6,11 +6,11 @@ using DM.MovieApi;
 using DM.MovieApi.MovieDb.Movies;
 using DM.MovieApi.ApiResponse;
 using System.Threading.Tasks;
-using MovieSearch.Model;
+using MovieHub.Models;
 using DM.MovieApi.MovieDb.People;
 
 
-namespace MovieSearch.Services
+namespace MovieHub.Services
 {
     public class MovieService
     {
@@ -19,21 +19,21 @@ namespace MovieSearch.Services
 
         private IApiMovieRequest _api;
         private IApiPeopleRequest _pApi;
-        private List<MovieDetails> _movies;
+        private List<MovieDetail> _movies;
 
         public MovieService()
         {
             MovieDbFactory.RegisterSettings(apiKey, apiUrl);
             _api = MovieDbFactory.Create<IApiMovieRequest>().Value;
             _pApi = MovieDbFactory.Create<IApiPeopleRequest>().Value;
-            _movies = new List<MovieDetails>();
+            _movies = new List<MovieDetail>();
         }
 
-        public async Task<List<MovieDetails>> GetMovieByTitle(string title)
+        public async Task<List<MovieDetail>> GetMovieByTitle(string title)
         {
             ApiSearchResponse<MovieInfo> response = await _api.SearchByTitleAsync(title);
 
-            _movies = new List<MovieDetails>();
+            _movies = new List<MovieDetail>();
 
             if (response.Results == null)
             {
@@ -44,7 +44,7 @@ namespace MovieSearch.Services
             {
                 foreach (MovieInfo info in response.Results)
                 {
-                    _movies.Add(new MovieDetails
+                    _movies.Add(new MovieDetail
                     {
                         id = info.Id,
                         title = info.Title,
@@ -59,7 +59,7 @@ namespace MovieSearch.Services
                         genres = new List<String>(),
                         actors = new List<String>(),
                         characters = new List<String>(),
-                        person = new List<Model.Person>()
+                        cast = new List<Cast>()
                     });
                 }
             }
@@ -67,19 +67,19 @@ namespace MovieSearch.Services
             return _movies;
         }
 
-        public async Task GetCastMembers(MovieDetails movie)
+        public async Task GetCastMembers(MovieDetail movie)
         {
-            for (int i = 0; i < movie.person.Count; i++)
+            for (int i = 0; i < movie.cast.Count; i++)
             {
-                ApiQueryResponse<DM.MovieApi.MovieDb.People.Person> castDetail = await _pApi.FindByIdAsync(movie.person[i].id);
+                ApiQueryResponse<Person> castDetail = await _pApi.FindByIdAsync(movie.cast[i].id);
                 if (castDetail.Item != null)
                 {
-                    movie.person[i].posterPath = castDetail.Item.ProfilePath;
+                    movie.cast[i].posterPath = castDetail.Item.ProfilePath;
                 }
             }
         }
 
-        public async Task GetCreditList(MovieDetails movie)
+        public async Task GetCreditList(MovieDetail movie)
         {
             ApiQueryResponse<MovieCredit> cast = await _api.GetCreditsAsync(movie.id);
 
@@ -90,7 +90,7 @@ namespace MovieSearch.Services
                     movie.actors.Add(cast.Item.CastMembers[i].Name);
                     movie.characters.Add(cast.Item.CastMembers[i].Character);
 
-                    movie.person.Add(new Model.Person
+                    movie.cast.Add(new Models.Cast   
                     {
                         id = cast.Item.CastMembers[i].PersonId,
                         name = cast.Item.CastMembers[i].Name
@@ -130,14 +130,14 @@ namespace MovieSearch.Services
             }
         }
 
-        public async Task<MovieDetails> GetMovieDetail(int id)
+        public async Task<MovieDetail> GetMovieDetail(int id)
         {
             ApiQueryResponse<Movie> movieInfo = await _api.FindByIdAsync(id);
-            MovieDetails movie = new MovieDetails();
+            MovieDetail movie = new MovieDetail();
 
             if (movieInfo.Item != null)
             {
-                movie = new MovieDetails()
+                movie = new MovieDetail()
                 {
                     title = movieInfo.Item.Title,
                     runtime = movieInfo.Item.Runtime.ToString(),
@@ -155,10 +155,10 @@ namespace MovieSearch.Services
             return movie;
         }
 
-        public async Task<List<MovieDetails>> getTopRatedMovies()
+        public async Task<List<MovieDetail>> getTopRatedMovies()
         {
             ApiSearchResponse<MovieInfo> response = await _api.GetTopRatedAsync();
-            List<MovieDetails> movies = new List<MovieDetails>();
+            List<MovieDetail> movies = new List<MovieDetail>();
 
             if (response.Results == null)
             {
@@ -169,7 +169,7 @@ namespace MovieSearch.Services
             {
                 foreach (MovieInfo info in response.Results)
                 {
-                    movies.Add(new MovieDetails
+                    movies.Add(new MovieDetail
                     {
                         id = info.Id,
                         title = info.Title,
@@ -184,7 +184,7 @@ namespace MovieSearch.Services
                         genres = new List<String>(),
                         actors = new List<String>(),
                         characters = new List<String>(),
-                        person = new List<Model.Person>()
+                        cast = new List<Cast>()
                     });
                 }
             }
@@ -192,7 +192,7 @@ namespace MovieSearch.Services
             return movies;
         }
 
-        public List<MovieDetails> GetMovies()
+        public List<MovieDetail> GetMovies()
         {
             return _movies;
         }

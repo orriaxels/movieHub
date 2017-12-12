@@ -36,7 +36,7 @@
   </PropertyGroup>
   <ItemGroup>
     <Compile Include="Models\MovieDetail.cs" />
-    <Compile Include="Models\Person.cs" />
+    <Compile Include="Models\Cast.cs" />
     <Compile Include="MovieService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

@@ -1,9 +1,8 @@
-﻿using MovieService.Models;
-using System;
+﻿using System;
 using System.Collections.Generic;
 
 
-namespace MovieSearch.Model
+namespace MovieHub.Models
 {
     public class MovieDetail
     {
@@ -16,7 +15,7 @@ namespace MovieSearch.Model
         public List<String> characters { get; set; }
         public String director { get; set; }
         public List<String> writers { get; set; }
-        public List<Person> person { get; set; }
+        public List<Cast> cast { get; set; }
         public String posterFilePath { get; set; }
         public String description { get; set; }
         public double voteAverage { get; set; }

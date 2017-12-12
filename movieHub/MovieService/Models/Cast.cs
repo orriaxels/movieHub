@@ -4,9 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace MovieService.Models
+namespace MovieHub.Models
 {
-    class Person
+     public class Cast
     {
         public int id { get; set; }
         public string name { get; set; }

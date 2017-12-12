@@ -2160,6 +2160,12 @@
         }
       },
       "movieHub/1.0.0": {
+        "type": "project",
+        "dependencies": {
+          "MovieService": "1.0.0"
+        }
+      },
+      "MovieService/1.0.0": {
         "type": "project"
       }
     },
@@ -4430,6 +4436,12 @@
         }
       },
       "movieHub/1.0.0": {
+        "type": "project",
+        "dependencies": {
+          "MovieService": "1.0.0"
+        }
+      },
+      "MovieService/1.0.0": {
         "type": "project"
       }
     },
@@ -6736,6 +6748,12 @@
         }
       },
       "movieHub/1.0.0": {
+        "type": "project",
+        "dependencies": {
+          "MovieService": "1.0.0"
+        }
+      },
+      "MovieService/1.0.0": {
         "type": "project"
       }
     },
@@ -9015,6 +9033,12 @@
         }
       },
       "movieHub/1.0.0": {
+        "type": "project",
+        "dependencies": {
+          "MovieService": "1.0.0"
+        }
+      },
+      "MovieService/1.0.0": {
         "type": "project"
       }
     },
@@ -11330,6 +11354,12 @@
         }
       },
       "movieHub/1.0.0": {
+        "type": "project",
+        "dependencies": {
+          "MovieService": "1.0.0"
+        }
+      },
+      "MovieService/1.0.0": {
         "type": "project"
       }
     },
@@ -13609,6 +13639,12 @@
         }
       },
       "movieHub/1.0.0": {
+        "type": "project",
+        "dependencies": {
+          "MovieService": "1.0.0"
+        }
+      },
+      "MovieService/1.0.0": {
         "type": "project"
       }
     },
@@ -15924,6 +15960,12 @@
         }
       },
       "movieHub/1.0.0": {
+        "type": "project",
+        "dependencies": {
+          "MovieService": "1.0.0"
+        }
+      },
+      "MovieService/1.0.0": {
         "type": "project"
       }
     }
@@ -22281,6 +22323,11 @@
       "type": "project",
       "path": "../movieHub/movieHub.csproj",
       "msbuildProject": "../movieHub/movieHub.csproj"
+    },
+    "MovieService/1.0.0": {
+      "type": "project",
+      "path": "../../MovieService/MovieService.csproj",
+      "msbuildProject": "../../MovieService/MovieService.csproj"
     }
   },
   "projectFileDependencyGroups": {
