@@ -22,8 +22,15 @@ namespace movieHub
 
         private async void SearchButton_OnClicked(object sender, EventArgs e)
         {
+            ActInd.IsRunning = true;
             await _api.GetMovieByTitle(this.MovieTitle.Text);
             await this.Navigation.PushAsync(new MovieList(_api));
+            ActInd.IsRunning = false;
+        }
+
+        void OnButtonClicked(object sender, EventArgs args)
+        {
+            ActInd.Color = Color.Green;
         }
 
 

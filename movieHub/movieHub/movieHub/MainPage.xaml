@@ -18,7 +18,7 @@
             <Label x:Name="MovieSearchLabel"
                    Text="movie title"
                    FontSize="Large" />
-
+            <ActivityIndicator x:Name="ActInd" Color="Red" IsRunning="False" />
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>
