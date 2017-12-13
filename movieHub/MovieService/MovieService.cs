@@ -80,6 +80,27 @@ namespace MovieHub.Services
             }
         }
 
+        public async Task<String> GetActorsAndRoles(MovieDetail movie)
+        {
+            ApiQueryResponse<MovieCredit> cast = await _api.GetCreditsAsync(movie.id);
+            var actors = "";
+            if (cast.Item != null)
+            {
+                for (int i = 0; i < cast.Item.CastMembers.Count && i < 7; i++)
+                {
+                    if(i+1 == cast.Item.CastMembers.Count && i < 7)
+                    {
+                        actors += cast.Item.CastMembers[i].Name + " - " + cast.Item.CastMembers[i].Character;
+                    }
+                    else
+                    {
+                        actors += cast.Item.CastMembers[i].Name + " - " + cast.Item.CastMembers[i].Character + "\n";    
+                    }
+                }
+            }
+            return actors;
+        }
+
         public async Task GetCreditList(MovieDetail movie)
         {
             ApiQueryResponse<MovieCredit> cast = await _api.GetCreditsAsync(movie.id);

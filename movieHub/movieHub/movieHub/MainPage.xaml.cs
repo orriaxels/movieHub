@@ -22,8 +22,11 @@ namespace movieHub
 
         private async void SearchButton_OnClicked(object sender, EventArgs e)
         {
-            await _api.GetMovieByTitle(this.MovieTitle.Text);
-            await this.Navigation.PushAsync(new MovieList(_api));
+            if(this.MovieTitle.Text != "")
+            {
+                await _api.GetMovieByTitle(this.MovieTitle.Text);
+                await this.Navigation.PushAsync(new MovieList(_api));    
+            }
         }
 
 

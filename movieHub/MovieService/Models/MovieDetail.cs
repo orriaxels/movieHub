@@ -24,30 +24,15 @@ namespace MovieHub.Models
         public String runtime { get; set; }
         public String tagLine { get; set; }
         public int budget { get; set; }
+        private string actorsAndRoles;
 
-        public List<Cast> castMembers
+        public String role
         {
-            get => this.cast;
+            get => actorsAndRoles;
 
             set
             {
-                this.cast = value;
-                OnPropertyChanged();
-            }
-        }
-
-        //public string averageRating
-        //{
-        //    get => this.voteAverage.ToString();
-        //}
-
-        public List<String> role
-        {
-            get => this.characters;
-
-            set
-            {
-                this.characters = value;
+                this.actorsAndRoles = value;
                 OnPropertyChanged();
             }
         }

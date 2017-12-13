@@ -22,7 +22,7 @@ namespace movieHub.Views.ListView
             _navigation = navigation;
             _api = api;
             _movieListFromApi = _api.GetMovies();
-            FetchList();
+            FetchList(this._movieListFromApi);
         }
 
         public List<MovieDetail> _movieList
@@ -30,11 +30,11 @@ namespace movieHub.Views.ListView
             get => _movieListFromApi;
         }
 
-        private async void FetchList()
+        private async void FetchList(List<MovieDetail> movies)
         {
-            foreach(MovieDetail movie in this._movieListFromApi)
+            foreach(MovieDetail movie in movies)
             {
-                await _api.GetCreditList(movie);
+                movie.role = await _api.GetActorsAndRoles(movie);
             }
         }
 
