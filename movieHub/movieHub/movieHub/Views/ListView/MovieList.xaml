@@ -64,6 +64,7 @@
                                    Grid.RowSpan="6"
                                    Aspect="AspectFill"
                                    Source="{Binding imageUrl}" />
+<<<<<<< HEAD
                             <!--<ListView x:Name="castListView"
                                       HasUnevenRows="True"
                                       ItemsSource="{Binding _movieList.role}"
@@ -94,6 +95,8 @@
                                     </DataTemplate>
                                 </ListView.ItemTemplate>
                             </ListView>-->
+=======
+>>>>>>> 09369c692ed5a9d6ee46cb9fb5f0da563118e726
                         </Grid>
                     </ViewCell>
                 </DataTemplate>
