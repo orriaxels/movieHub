@@ -10,37 +10,84 @@
                   SeparatorColor="#DDDDDD">
             <ListView.RowHeight>
                 <OnPlatform x:TypeArguments="x:Int32">
-                    <On Platform="iOS">60</On>
-                    <On Platform="Android">60</On>
+                    <On Platform="iOS">140</On>
+                    <On Platform="Android">140</On>
                     <On Platform="UWP">100</On>
                 </OnPlatform>
             </ListView.RowHeight>
             <ListView.ItemTemplate>
                 <DataTemplate>
                     <ViewCell>
-                        <Grid Padding="10,10"
-                              RowSpacing="6">
+                        <Grid Padding="10,10,10,10"
+                              RowSpacing="3">
                             <Grid.RowDefinitions>
                                 <RowDefinition Height="*"/>
-                                <RowDefinition Height="Auto"/>
+                                <RowDefinition Height="*"/>
+                                <RowDefinition Height="*"/>
+                                <RowDefinition Height="*"/>
+                                <RowDefinition Height="*"/>
+                                <RowDefinition Height="*"/>
                             </Grid.RowDefinitions>
                             <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="80"/>
                                 <ColumnDefinition Width="*"/>
-                                <ColumnDefinition Width="40"/>
                             </Grid.ColumnDefinitions>
                             <Label Grid.Row="0"
-                                   Grid.Column="0"
+                                   Grid.Column="1"
                                    Text="{Binding title}"
                                    FontSize="Medium"
-                                   TextColor="#1f03e1" />
+                                   TextColor="#555555" />
                             <Label Grid.Row="1"
-                                   Grid.Column="0"
-                                   Text="{Binding year}"
-                                   FontSize="Small"/>
-                            <Image Grid.Row="0"
                                    Grid.Column="1"
-                                   Grid.RowSpan="2"
-                                   Source="{Binding ImageSource}"/>
+                                   Text="{Binding releaseDate}"
+                                   FontSize="Small"
+                                   TextColor="#555555"/>
+                            <Label Grid.Row="2"
+                                   Grid.Column="1"
+                                   Text="&#9733;"
+                                   FontSize="Large"
+                                   TextColor="#555555"/>
+                            <Label Grid.Row="2"
+                                   Grid.Column="1"
+                                   Margin="25,2, 0, 0"
+                                   Text="{Binding voteAverage}"
+                                   FontSize="Medium"
+                                   TextColor="#555555"/>
+                            <Image Grid.Row="0"
+                                   Grid.Column="0"
+                                   Grid.RowSpan="6"
+                                   Aspect="AspectFill"
+                                   Source="{Binding imageUrl}" />
+                            <ListView x:Name="castListView"
+                                      HasUnevenRows="True"
+                                      ItemsSource="{Binding _movieList.role}"
+                                      SeparatorColor="#DDDDDD">
+                                      <ListView.RowHeight>
+                                            <OnPlatform x:TypeArguments="x:Int32">
+                                            <On Platform="iOS">40</On>
+                                            <On Platform="Android">40</On>
+                                            <On Platform="UWP">40</On>
+                                        </OnPlatform>
+                                    </ListView.RowHeight>
+                                <ListView.ItemTemplate>
+                                    <DataTemplate>
+                                        <ViewCell>
+                                            <Grid Margin="0, 10, 0, 0" RowSpacing="1" Grid.Row="3" Grid.Column="1">
+                                                <Grid.RowDefinitions>
+                                                    <RowDefinition Height="Auto" />
+                                                    <RowDefinition Height="Auto" />
+                                                </Grid.RowDefinitions>
+                                                <Grid.ColumnDefinitions>
+                                                    <ColumnDefinition Width="Auto">
+                                                </ColumnDefinition>
+                                                </Grid.ColumnDefinitions>
+                                                    <Label Grid.Row="0" Grid.Column="0" Text="{Binding .}" TextColor="#555555" FontSize="Small"/>
+                                                    <Label Grid.Row="1" Grid.Column="0" Text="Inside Second" TextColor="#555555" FontSize="Small"/>         
+                                            </Grid>
+                                        </ViewCell>
+                                    </DataTemplate>
+                                </ListView.ItemTemplate>
+                            </ListView>
                         </Grid>
                     </ViewCell>
                 </DataTemplate>

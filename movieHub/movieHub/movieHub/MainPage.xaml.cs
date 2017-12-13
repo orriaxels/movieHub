@@ -20,8 +20,6 @@ namespace movieHub
             InitializeComponent();
         }
 
-
-
         private async void SearchButton_OnClicked(object sender, EventArgs e)
         {
             await _api.GetMovieByTitle(this.MovieTitle.Text);

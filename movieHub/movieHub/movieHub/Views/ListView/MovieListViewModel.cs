@@ -8,7 +8,6 @@ using System.Threading.Tasks;
 using Xamarin.Forms;
 using MovieHub.Models;
 using MovieHub.Services;
-using MovieHub.MovieService.Models;
 
 namespace movieHub.Views.ListView
 {
@@ -16,40 +15,27 @@ namespace movieHub.Views.ListView
     {
         private INavigation _navigation;
         private MovieService _api;
-        List<MovieListModel> _movieListModel;
+        private List<MovieDetail> _movieListFromApi;
 
         public MovieListViewModel(INavigation navigation, MovieService api)
         {
             _navigation = navigation;
             _api = api;
-            _movieListModel = new List<MovieListModel>();
+            _movieListFromApi = _api.GetMovies();
+            FetchList();
         }
 
-        public List<MovieListModel> _movieList
+        public List<MovieDetail> _movieList
         {
-            get => GetList();
+            get => _movieListFromApi;
         }
 
-        private List<MovieListModel> GetList()
+        private async void FetchList()
         {
-            var list = _api.GetMovies();
-
-            foreach(MovieDetail movie in list)
+            foreach(MovieDetail movie in this._movieListFromApi)
             {
-                _movieListModel.Add(new MovieListModel
-                {
-                    title = movie.title,
-                    year = "(" + movie.releaseDate.Year.ToString() + ")",
-                    posterPath = movie.imageUrl,
-                    actors = movie.actors
-                });
-
-                //_movieListModel.Add(newMovie);
-
+                await _api.GetCreditList(movie);
             }
-
-            OnPropertyChanged();
-            return _movieListModel;
         }
 
         public event PropertyChangedEventHandler PropertyChanged;

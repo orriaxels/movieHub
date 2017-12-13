@@ -1,15 +1,16 @@
 ﻿using System;
 using System.Collections.Generic;
-
+using System.ComponentModel;
+using System.Runtime.CompilerServices;
 
 namespace MovieHub.Models
 {
-    public class MovieDetail
+    public class MovieDetail : INotifyPropertyChanged
     {
         public int id { get; set; }
         public String title { get; set; }
         public String imageUrl { get; set; }
-        public DateTime releaseDate { get; set; }
+        public String releaseDate { get; set; }
         public List<String> actors { get; set; }
         public List<String> genres { get; set; }
         public List<String> characters { get; set; }
@@ -23,5 +24,39 @@ namespace MovieHub.Models
         public String runtime { get; set; }
         public String tagLine { get; set; }
         public int budget { get; set; }
+
+        public List<Cast> castMembers
+        {
+            get => this.cast;
+
+            set
+            {
+                this.cast = value;
+                OnPropertyChanged();
+            }
+        }
+
+        //public string averageRating
+        //{
+        //    get => this.voteAverage.ToString();
+        //}
+
+        public List<String> role
+        {
+            get => this.characters;
+
+            set
+            {
+                this.characters = value;
+                OnPropertyChanged();
+            }
+        }
+
+        public event PropertyChangedEventHandler PropertyChanged;
+
+        protected virtual void OnPropertyChanged([CallerMemberName] string propertyName = null)
+        {
+            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
+        }
     }
 }

@@ -14,6 +14,11 @@ namespace movieHub.Views.ListView
     {
         private MovieService _api;
 
+        public MovieList()
+        {
+            InitializeComponent();
+        }
+
         public MovieList(MovieService api)
         {
             this._api = api;

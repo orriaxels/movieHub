@@ -16,6 +16,7 @@ namespace MovieHub.Services
     {
         public string apiKey = "807f816252d83b681cf3b2efe5ffe5b0";
         public string apiUrl = "https://api.themoviedb.org/3/";
+        private string imageURI = "http://image.tmdb.org/t/p/original";
 
         private IApiMovieRequest _api;
         private IApiPeopleRequest _pApi;
@@ -48,8 +49,8 @@ namespace MovieHub.Services
                     {
                         id = info.Id,
                         title = info.Title,
-                        imageUrl = info.PosterPath,
-                        releaseDate = info.ReleaseDate,
+                        imageUrl = imageURI + info.PosterPath,
+                        releaseDate = "(" + info.ReleaseDate.Year.ToString() + ")",
                         voteAverage = info.VoteAverage,
                         voteCount = info.VoteCount,
                         posterFilePath = "",
@@ -173,8 +174,8 @@ namespace MovieHub.Services
                     {
                         id = info.Id,
                         title = info.Title,
-                        imageUrl = info.PosterPath,
-                        releaseDate = info.ReleaseDate,
+                        imageUrl = imageURI + info.PosterPath,
+                        releaseDate = "(" + info.ReleaseDate.Year.ToString() + ")",
                         voteAverage = info.VoteAverage,
                         voteCount = info.VoteCount,
                         posterFilePath = "",
