@@ -32,6 +32,11 @@ namespace MovieHub.Services
 
         public async Task<List<MovieDetail>> GetMovieByTitle(string title)
         {
+            if(title == string.Empty)
+            {
+                return _movies;
+            }
+
             ApiSearchResponse<MovieInfo> response = await _api.SearchByTitleAsync(title);
 
             _movies = new List<MovieDetail>();
@@ -57,10 +62,11 @@ namespace MovieHub.Services
                         runtime = "",
                         director = "",
                         writers = new List<String>(),
-                        genres = new List<String>(),
+                        genres = "",
                         actors = new List<String>(),
                         characters = new List<String>(),
-                        cast = new List<Cast>()
+                        cast = new List<Cast>(),
+                        backDrop = imageURI + info.BackdropPath
                     });
                 }
             }
@@ -165,14 +171,30 @@ namespace MovieHub.Services
                     runtime = movieInfo.Item.Runtime.ToString(),
                     description = movieInfo.Item.Overview,
                     tagLine = movieInfo.Item.Tagline,
-                    budget = movieInfo.Item.Budget,
-                    genres = new List<String>()
+                    budget = movieInfo.Item.Budget.ToString(),
                 };
+
+                var movieGenre = "";
 
                 for (int i = 0; i < movieInfo.Item.Genres.Count; i++)
                 {
-                    movie.genres.Add(movieInfo.Item.Genres[i].ToString());
+                    if (i + 1 == movieInfo.Item.Genres.Count)
+                    {
+                        movieGenre += movieInfo.Item.Genres[i];
+                    }
+                    else
+                    {
+                        movieGenre += movieInfo.Item.Genres[i] + ", ";
+                    }
                 }
+
+                movie.genres = movieGenre;
+
+                //for (int i = 0; i < movieInfo.Item.Genres.Count; i++)
+                //{
+                //    if(i == movieInfo.Item.Genres.Count())
+                //    movie.genres.Add(movieInfo.Item.Genres[i].ToString());
+                //}
             }
             return movie;
         }
@@ -203,7 +225,7 @@ namespace MovieHub.Services
                         runtime = "",
                         director = "",
                         writers = new List<String>(),
-                        genres = new List<String>(),
+                        genres = "",
                         actors = new List<String>(),
                         characters = new List<String>(),
                         cast = new List<Cast>()

@@ -12,7 +12,7 @@ namespace MovieHub.Models
         public String imageUrl { get; set; }
         public String releaseDate { get; set; }
         public List<String> actors { get; set; }
-        public List<String> genres { get; set; }
+        public String genres { get; set; }
         public List<String> characters { get; set; }
         public String director { get; set; }
         public List<String> writers { get; set; }
@@ -23,8 +23,9 @@ namespace MovieHub.Models
         public int voteCount { get; set; }
         public String runtime { get; set; }
         public String tagLine { get; set; }
-        public int budget { get; set; }
+        public String budget { get; set; }
         private string actorsAndRoles;
+        public String backDrop { get; set; }
 
         public String role
         {
@@ -33,6 +34,50 @@ namespace MovieHub.Models
             set
             {
                 this.actorsAndRoles = value;
+                OnPropertyChanged();
+            }
+        }
+
+        public String overView
+        {
+            get => description;
+
+            set
+            {
+                this.description = value;
+                OnPropertyChanged();
+            }
+        }
+
+        public String runLength
+        {
+            get => runtime;
+
+            set
+            {
+                this.runtime = value;
+                OnPropertyChanged();
+            }
+        }
+
+        public String tag
+        {
+            get => tagLine;
+
+            set
+            {
+                this.tagLine = value;
+                OnPropertyChanged();
+            }
+        }
+
+        public String cashMoney
+        {
+            get => budget;
+
+            set
+            {
+                this.budget = value;
                 OnPropertyChanged();
             }
         }

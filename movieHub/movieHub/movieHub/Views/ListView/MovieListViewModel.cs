@@ -8,6 +8,7 @@ using System.Threading.Tasks;
 using Xamarin.Forms;
 using MovieHub.Models;
 using MovieHub.Services;
+using movieHub.Views.DetailView;
 
 namespace movieHub.Views.ListView
 {
@@ -16,25 +17,52 @@ namespace movieHub.Views.ListView
         private INavigation _navigation;
         private MovieService _api;
         private List<MovieDetail> _movieListFromApi;
+        private MovieDetail _movie;
+        private String _searchText;
 
-        public MovieListViewModel(INavigation navigation, MovieService api)
+        public MovieListViewModel(INavigation navigation, MovieService api, string searchText)
         {
-            _navigation = navigation;
-            _api = api;
-            _movieListFromApi = _api.GetMovies();
-            FetchList(this._movieListFromApi);
+            this._navigation = navigation;
+            this._api = api;
+            this._searchText = searchText;
+            this._movieListFromApi = _api.GetMovies();
         }
 
         public List<MovieDetail> _movieList
         {
             get => _movieListFromApi;
+
+            set
+            {
+                this._movieListFromApi = value;
+                OnPropertyChanged();
+            }
         }
 
-        private async void FetchList(List<MovieDetail> movies)
+        public string searchTitle
         {
-            foreach(MovieDetail movie in movies)
+            get => "Results for \"" + this._searchText + "\"";
+        }
+
+        public async void FetchList()
+        {
+            foreach(MovieDetail movie in this._movieListFromApi)
             {
                 movie.role = await _api.GetActorsAndRoles(movie);
+            }
+        }
+
+        public MovieDetail SelectedMovie
+        {
+            get => this._movie;
+
+            set
+            {
+                if (value != null)
+                {
+                    this._movie = value;
+                    this._navigation.PushAsync(new Detail(this._movie, this._api), true);
+                }
             }
         }
 

@@ -2,7 +2,8 @@
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:local="clr-namespace:movieHub"
-             x:Class="movieHub.MainPage">
+             x:Class="movieHub.MainPage"
+             Title="The Movie Hub">
     <ContentPage.Content>
         <StackLayout Margin="20,20,20,20"
                      VerticalOptions="Start"
@@ -20,8 +21,7 @@
                    FontSize="Large" />
             <ActivityIndicator x:Name="ActInd"
                 Color="red"
-                IsRunning="false"
-                />
+                IsRunning="false"/>
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>
