@@ -24,7 +24,7 @@ namespace movieHub.Views.ListView
             this._api = api;
 
             this.BindingContext = new MovieListViewModel(this.Navigation, _api);
-
+            
             InitializeComponent();
         }
     }

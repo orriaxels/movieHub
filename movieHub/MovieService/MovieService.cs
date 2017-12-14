@@ -86,7 +86,7 @@ namespace MovieHub.Services
             var actors = "";
             if (cast.Item != null)
             {
-                for (int i = 0; i < cast.Item.CastMembers.Count && i < 7; i++)
+                for (int i = 0; i < cast.Item.CastMembers.Count && i < 3; i++)
                 {
                     if(i+1 == cast.Item.CastMembers.Count && i < 7)
                     {
