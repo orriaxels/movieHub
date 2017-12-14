@@ -22,16 +22,12 @@ namespace movieHub
 
         
         private async void SearchButton_OnClicked(object sender, EventArgs e)
-        {
-            //searchBar.Text = "Star Wars";
-            //if(this.MovieTitle.Text != "")
-            //{
-                ActInd.IsRunning = true;
-                var x = await _api.GetMovieByTitle(searchBar.Text);
-                //await this.Navigation.PushAsync(new MovieList(_api));
-                ActInd.IsRunning = false;
-                listView.ItemsSource = x;
-            //}           
+        {            
+            ActInd.IsRunning = true;
+            var x = await _api.GetMovieByTitle(searchBar.Text);
+            await this.Navigation.PushAsync(new MovieList(_api, searchBar.Text));
+            ActInd.IsRunning = false;
+            //listView.ItemsSource = x;            
         }
     }
 }

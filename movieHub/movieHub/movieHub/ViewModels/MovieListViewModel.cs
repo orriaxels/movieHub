@@ -8,6 +8,7 @@ using System.Threading.Tasks;
 using Xamarin.Forms;
 using MovieHub.Models;
 using MovieHub.Services;
+using movieHub.Views.DetailView;
 
 namespace movieHub.Views.ListView
 {
@@ -17,37 +18,65 @@ namespace movieHub.Views.ListView
         private MovieService _api;
         private List<MovieDetail> _movieListFromApi;
         public List<MovieDetail> _topRatedList;
+        private MovieDetail _movie;
+        private String _searchText;
 
-        public MovieListViewModel(INavigation navigation, MovieService api)
-        {
-            _navigation = navigation;
-            _api = api;
-            _movieListFromApi = _api.GetMovies();
-            _topRatedList = _api.GetMovies();
-            FetchList(this._movieListFromApi);            
+        public MovieListViewModel(INavigation navigation, MovieService api, string searchText)
+        {                                   
+            //this._topRatedList = _api.GetMovies();
+            this._navigation = navigation;
+            this._api = api;
+            this._searchText = searchText;
+            this._movieListFromApi = _api.GetMovies();
         }
 
         public List<MovieDetail> _movieList
         {
             get => _movieListFromApi;
+
+            set
+            {
+                this._movieListFromApi = value;
+                OnPropertyChanged();
+            }
         }
 
-        public List<MovieDetail> _topList
+        public string searchTitle
         {
-            get => _topRatedList;
+            get => "Results for \"" + this._searchText + "\"";
         }
 
-        private async void FetchList(List<MovieDetail> movies)
+        //public List<MovieDetail> _topList
+        //{
+        //    get => _topRatedList;
+        //}       
+
+        public async void FetchList()
+
         {
-            foreach(MovieDetail movie in movies)
+            foreach(MovieDetail movie in this._movieListFromApi)
             {
                 movie.role = await _api.GetActorsAndRoles(movie);
             }
         }
 
-        public async void FetchTopRated()
+        //public async void FetchTopRated()
+        //{
+        //    await _api.getTopRatedMovies();
+        //}
+
+        public MovieDetail SelectedMovie
         {
-            await _api.getTopRatedMovies();
+            get => this._movie;
+
+            set
+            {
+                if (value != null)
+                {
+                    this._movie = value;
+                    this._navigation.PushAsync(new Detail(this._movie, this._api), true);
+                }
+            }
         }
 
         public event PropertyChangedEventHandler PropertyChanged;

@@ -26,7 +26,7 @@ namespace movieHub.Views
         {
             _api = api;
             _tabbed = new Tabbed(_api);
-            this.BindingContext = new MovieListViewModel(this.Navigation, _api);
+          //  this.BindingContext = new MovieListViewModel(this.Navigation, _api);
 
             InitializeComponent();
         }

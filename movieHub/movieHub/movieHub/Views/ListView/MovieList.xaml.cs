@@ -13,19 +13,20 @@ namespace movieHub.Views.ListView
     public partial class MovieList : ContentPage
     {
         private MovieService _api;
-
-        public MovieList()
+        private MovieListViewModel _movieListViewModel;
+        public MovieList(MovieService api, string searchText)
         {
+            NavigationPage.SetBackButtonTitle(this, "Back");
+            this._api = api;
+            _movieListViewModel = new MovieListViewModel(this.Navigation, _api, searchText);
+            this.BindingContext = this._movieListViewModel;
             InitializeComponent();
         }
 
-        public MovieList(MovieService api)
-        {
-            this._api = api;
-
-            this.BindingContext = new MovieListViewModel(this.Navigation, _api);
-            
-            InitializeComponent();
+        protected override void OnAppearing()
+        {                    
+            base.OnAppearing();
+            this._movieListViewModel.FetchList();            
         }
     }
 }

@@ -7,21 +7,22 @@ using System.Text;
 using System.Threading.Tasks;
 using Xamarin.Forms;
 
+
 namespace movieHub
 {
     class Tabbed : TabbedPage
      {
         MovieService _api;
-        MovieListViewModel _movieListViewModel;
+        //MovieListViewModel _movieListViewModel;
         public Tabbed(MovieService api)
         {
             _api = api;
-            _movieListViewModel = new MovieListViewModel(this.Navigation, _api);
+           // _movieListViewModel = new MovieListViewModel(this.Navigation, _api);
             OnAppearing();
         }
         protected override void OnAppearing()
         {
-            _movieListViewModel.FetchTopRated();
+            //_movieListViewModel.FetchTopRated();
         }
     }
 }

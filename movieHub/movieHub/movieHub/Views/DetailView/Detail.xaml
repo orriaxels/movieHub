@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ContentPage    xmlns="http://xamarin.com/schemas/2014/forms" 
+                xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" 
+                x:Class="movieHub.Views.DetailView.Detail"
+                Title="{Binding Movie.title}"
+                BackgroundColor="Gray">
+	<ContentPage.Content>
+        <ScrollView>
+            <RelativeLayout
+                RelativeLayout.WidthConstraint="{ConstraintExpression Type=RelativeToParent,Property=Width,Factor=1}">
+            <Image x:Name="backdropImage" Source="{Binding Movie.backDrop}" 
+                RelativeLayout.WidthConstraint="{ConstraintExpression  
+                    Type=RelativeToParent,  
+                    Property=Width,  
+                    Factor=1}"  
+                RelativeLayout.HeightConstraint="{ConstraintExpression  
+                    Type=RelativeToParent,  
+                    Property=Height,  
+                    Factor=1}"
+                HorizontalOptions="StartAndExpand"
+                VerticalOptions="Start"/> 
+            <BoxView x:Name ="posterBackGround" 
+                Color="White"
+                HeightRequest="246"
+                WidthRequest="166"
+                RelativeLayout.YConstraint="{ConstraintExpression Type=RelativeToParent, Property=Y, Factor=0, Constant=137}" 
+                RelativeLayout.XConstraint="{ConstraintExpression Type=RelativeToParent, Property=X, Factor=0, Constant=7}" />                
+            <BoxView x:Name ="detailBackGround" 
+                Color="White"
+                HorizontalOptions="StartAndExpand"
+                HeightRequest="300"
+                RelativeLayout.YConstraint="{ConstraintExpression Type=RelativeToParent, Property=Y, Factor=0, Constant=250}" 
+                RelativeLayout.XConstraint="{ConstraintExpression Type=RelativeToParent, Property=X, Factor=0, Constant=0}" />                            
+            <Image x:Name ="poster" 
+                Source="{Binding Movie.imageUrl}"
+                HeightRequest="240"
+                WidthRequest="160"
+                RelativeLayout.YConstraint="{ConstraintExpression Type=RelativeToParent, Property=Y, Factor=0, Constant=140}" 
+                RelativeLayout.XConstraint="{ConstraintExpression Type=RelativeToParent, Property=X, Factor=0, Constant=10}" />
+            <Label x:Name="movieTitle"
+                Text="{Binding Movie.title}"
+                RelativeLayout.YConstraint="{ConstraintExpression Type=RelativeToParent, Property=Y, Factor=0, Constant=900}" 
+                RelativeLayout.XConstraint="{ConstraintExpression Type=RelativeToParent, Property=X, Factor=0, Constant=180}"/>
+            <Label x:Name="actors"
+                Text="{Binding Movie.runLength}"
+                RelativeLayout.YConstraint="{ConstraintExpression Type=RelativeToParent, Property=Y, Factor=0, Constant=140}" 
+                RelativeLayout.XConstraint="{ConstraintExpression Type=RelativeToParent, Property=X, Factor=0, Constant=180}"/>
+        </RelativeLayout>
+        </ScrollView>
+	</ContentPage.Content>
+</ContentPage>
+
+
+
+
+
+

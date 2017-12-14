@@ -54,15 +54,13 @@
                             <Label Grid.Row="2"
                                    Grid.Column="1"
                                    Text="&#9733;"
-                                   FontSize="Small"
-                                   TextColor="#555555"
+                                   FontSize="Small"                                   
                                    />
                             <Label Grid.Row="2"
                                    Grid.Column="1"
                                    Margin="25,2, 0, 0"
                                    Text="{Binding voteAverage}"
-                                   FontSize="Small"
-                                   TextColor="#555555"
+                                   FontSize="Small"                                   
                                    />
                             <Label Grid.Row="3"
                                    Grid.Column="1"
@@ -73,7 +71,7 @@
                             <Image Grid.Row="0"
                                    Grid.Column="0"
                                    Grid.RowSpan="4"
-                                   Aspect="Fill"
+                                   Aspect="Fill"                                   
                                    Source="{Binding imageUrl}" />
                         </Grid>
                     </ViewCell>
