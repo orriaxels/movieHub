@@ -199,6 +199,44 @@ namespace MovieHub.Services
             return movie;
         }
 
+        public async Task<List<MovieDetail>> getPopularMovies()
+        {
+            ApiSearchResponse<MovieInfo> response = await _api.GetPopularAsync();
+            List<MovieDetail> movies = new List<MovieDetail>();
+
+            if (response.Results == null)
+            {
+                return movies;
+            }
+
+            if (response.Results != null)
+            {
+                foreach (MovieInfo info in response.Results)
+                {
+                    movies.Add(new MovieDetail
+                    {
+                        id = info.Id,
+                        title = info.Title,
+                        imageUrl = imageURI + info.PosterPath,
+                        releaseDate = "(" + info.ReleaseDate.Year.ToString() + ")",
+                        voteAverage = info.VoteAverage,
+                        voteCount = info.VoteCount,
+                        posterFilePath = "",
+                        runtime = "",
+                        director = "",
+                        writers = new List<String>(),
+                        genres = "",
+                        actors = new List<String>(),
+                        characters = new List<String>(),
+                        cast = new List<Cast>(),
+                        backDrop = imageURI + info.BackdropPath
+                    });
+                }
+            }
+
+            return movies;
+        }
+
         public async Task<List<MovieDetail>> getTopRatedMovies()
         {            
             ApiSearchResponse<MovieInfo> response = await _api.GetTopRatedAsync();
@@ -228,7 +266,8 @@ namespace MovieHub.Services
                         genres = "",
                         actors = new List<String>(),
                         characters = new List<String>(),
-                        cast = new List<Cast>()
+                        cast = new List<Cast>(),
+                        backDrop = imageURI + info.BackdropPath
                     });
                 }
             }
