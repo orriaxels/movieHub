@@ -13,7 +13,7 @@ namespace movieHub.Views.ListView
     public partial class MovieList : ContentPage
     {
         private MovieService _api;
-        private MovieListViewModel _movieListViewModel;
+        public MovieListViewModel _movieListViewModel;
 
         public MovieList(MovieService api, string searchText)
         {

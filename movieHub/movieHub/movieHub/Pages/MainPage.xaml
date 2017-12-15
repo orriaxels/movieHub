@@ -10,8 +10,10 @@
             <SearchBar 
                 x:Name="searchBar"
                 SearchButtonPressed="SearchButton_OnClicked"
+                TextChanged="onTextChanged"
                 Placeholder="Movie title..."                              
-                HorizontalOptions="Start" />
+                HorizontalOptions="StartAndExpand"
+                HeightRequest="50"/>
             <ActivityIndicator x:Name="ActInd"
                 Color="red"
                 IsRunning="false"
