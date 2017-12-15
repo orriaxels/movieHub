@@ -2,11 +2,11 @@
 <ContentPage    xmlns="http://xamarin.com/schemas/2014/forms" 
                 xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" 
                 x:Class="movieHub.Views.DetailView.Detail"
-                Title="{Binding Movie.title}"
-                BackgroundColor="Gray">
+                Title="{Binding Movie.title}">
 	<ContentPage.Content>
         <ScrollView>
             <RelativeLayout
+                x:Name="detailLayout"
                 RelativeLayout.WidthConstraint="{ConstraintExpression Type=RelativeToParent,Property=Width,Factor=1}">
             <Image x:Name="backdropImage" Source="{Binding Movie.backDrop}" 
                 RelativeLayout.WidthConstraint="{ConstraintExpression  
@@ -18,33 +18,47 @@
                     Property=Height,  
                     Factor=1}"
                 HorizontalOptions="StartAndExpand"
-                VerticalOptions="Start"/> 
+                VerticalOptions="StartAndExpand"/> 
+                
             <BoxView x:Name ="posterBackGround" 
                 Color="White"
                 HeightRequest="246"
                 WidthRequest="166"
                 RelativeLayout.YConstraint="{ConstraintExpression Type=RelativeToParent, Property=Y, Factor=0, Constant=137}" 
                 RelativeLayout.XConstraint="{ConstraintExpression Type=RelativeToParent, Property=X, Factor=0, Constant=7}" />                
-            <BoxView x:Name ="detailBackGround" 
-                Color="White"
-                HorizontalOptions="StartAndExpand"
-                HeightRequest="300"
-                RelativeLayout.YConstraint="{ConstraintExpression Type=RelativeToParent, Property=Y, Factor=0, Constant=250}" 
-                RelativeLayout.XConstraint="{ConstraintExpression Type=RelativeToParent, Property=X, Factor=0, Constant=0}" />                            
+
             <Image x:Name ="poster" 
                 Source="{Binding Movie.imageUrl}"
                 HeightRequest="240"
                 WidthRequest="160"
                 RelativeLayout.YConstraint="{ConstraintExpression Type=RelativeToParent, Property=Y, Factor=0, Constant=140}" 
-                RelativeLayout.XConstraint="{ConstraintExpression Type=RelativeToParent, Property=X, Factor=0, Constant=10}" />
-            <Label x:Name="movieTitle"
-                Text="{Binding Movie.title}"
-                RelativeLayout.YConstraint="{ConstraintExpression Type=RelativeToParent, Property=Y, Factor=0, Constant=900}" 
+                RelativeLayout.XConstraint="{ConstraintExpression Type=RelativeToParent, Property=X, Factor=1, Constant=10}" />
+            <!-- Rating -->
+            <Label x:Name="StarImage"
+                Text="&#9733;"
+                FontSize="Large"
+                TextColor="#555555"
+                RelativeLayout.YConstraint="{ConstraintExpression Type=RelativeToParent, Property=Y, Factor=0, Constant=220}" 
                 RelativeLayout.XConstraint="{ConstraintExpression Type=RelativeToParent, Property=X, Factor=0, Constant=180}"/>
+            <Label x:Name="rating"
+                Text="8.7"
+                FontSize="Medium"
+                TextColor="#555555"
+                RelativeLayout.YConstraint="{ConstraintExpression Type=RelativeToParent, Property=Y, Factor=0, Constant=225}" 
+                RelativeLayout.XConstraint="{ConstraintExpression Type=RelativeToParent, Property=X, Factor=0, Constant=205}"/>               
+
+            <!-- Budget -->
+            <Label x:Name="budget"
+                Text="$ 100.000.000"
+                FontSize="Medium"
+                TextColor="#555555"
+                RelativeLayout.YConstraint="{ConstraintExpression Type=RelativeToParent, Property=Y, Factor=0, Constant=250}" 
+                RelativeLayout.XConstraint="{ConstraintExpression Type=RelativeToParent, Property=X, Factor=0, Constant=180}"/>          
+
             <Label x:Name="actors"
                 Text="{Binding Movie.runLength}"
-                RelativeLayout.YConstraint="{ConstraintExpression Type=RelativeToParent, Property=Y, Factor=0, Constant=140}" 
-                RelativeLayout.XConstraint="{ConstraintExpression Type=RelativeToParent, Property=X, Factor=0, Constant=180}"/>
+                RelativeLayout.YConstraint="{ConstraintExpression Type=RelativeToParent, Property=Y, Factor=0, Constant=220}" 
+                RelativeLayout.XConstraint="{ConstraintExpression Type=RelativeToParent, Property=X, Factor=0, Constant=180}"/>             
         </RelativeLayout>
         </ScrollView>
 	</ContentPage.Content>

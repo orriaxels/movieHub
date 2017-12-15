@@ -9,17 +9,74 @@ namespace movieHub.Views.DetailView
     public partial class Detail : ContentPage
     {
         private DetailViewModel _detailViewModel;
+        private double _backdropHeight;
         public Detail(MovieDetail movie, MovieService api)
         {
             _detailViewModel = new DetailViewModel(movie, api);
             this.BindingContext = this._detailViewModel;
             InitializeComponent();
+
+            //this.Padding = new Thickness(10, Device.OnPlatform(20, 0, 0), 10, 5);
+
+            //Image backDrop = new Image()
+            //{
+            //    Source = movie.backDrop,
+            //    HorizontalOptions = LayoutOptions.StartAndExpand,
+            //    HeightRequest = 220,
+            //};
+
+            //_backdropHeight = backDrop.HeightRequest;
+
+            //BoxView posterBorder = new BoxView()
+            //{
+            //    Color = Color.White,
+            //    HeightRequest = 246,
+            //    WidthRequest = 166,
+
+            //};
+
+            //RelativeLayout relativeLayout = new RelativeLayout();
+
+            //relativeLayout.Children.Add(backDrop, Constraint.RelativeToParent((parent) => {
+            //    return 0;
+            //}));
+
+            //relativeLayout.Children.Add(posterBorder,
+            //    Constraint.RelativeToParent((parent) =>
+            //    {
+            //        return 10;
+            //    }),
+            //    Constraint.RelativeToParent((parent) =>
+            //    {
+            //        return _backdropHeight - 30;
+            //    })
+            //);
+
+            //Image posterImage = new Image()
+            //{
+            //    Source = movie.imageUrl,
+            //    HeightRequest = 240,
+            //    WidthRequest = 160
+            //};
+
+            //relativeLayout.Children.Add(posterImage,
+            //    Constraint.RelativeToParent((parent) =>
+            //    {
+            //        return 13;
+            //    }),
+            //    Constraint.RelativeToParent((parent) =>
+            //    {
+            //        return _backdropHeight - 27;
+            //    })
+            //);
+            
+            //this.Content = relativeLayout;
         }
 
-        protected override void OnAppearing()
+        protected async override void OnAppearing()
         {
             base.OnAppearing();
-            this._detailViewModel.FetchMovieDetail();
+            await this._detailViewModel.FetchMovieDetail();
         }
     }
 }
