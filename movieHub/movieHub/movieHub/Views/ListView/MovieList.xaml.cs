@@ -13,7 +13,7 @@ namespace movieHub.Views.ListView
     public partial class MovieList : ContentPage
     {
         private MovieService _api;
-        private MovieListViewModel _movieListViewModel;
+        public MovieListViewModel _movieListViewModel;
 
         public MovieList(MovieService api, string searchText)
         {
@@ -21,14 +21,7 @@ namespace movieHub.Views.ListView
             this._api = api;
             _movieListViewModel = new MovieListViewModel(this.Navigation, _api, searchText);
             this.BindingContext = this._movieListViewModel;
-            InitializeComponent();
-            System.Diagnostics.Debug.WriteLine("Number of elements in toplist: " + _movieListViewModel._topList.Count);
-            System.Diagnostics.Debug.WriteLine("Number of elements in list: " + _movieListViewModel._movieList.Count);
-            for (int i = 0; i < _movieListViewModel._topList.Count; i++)
-            {
-                System.Diagnostics.Debug.WriteLine(_movieListViewModel._topList[i].title);
-            }
-
+            InitializeComponent();        
         }
 
         protected override void OnAppearing()

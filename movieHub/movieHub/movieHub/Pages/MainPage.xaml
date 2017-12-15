@@ -9,9 +9,10 @@
                      Spacing="10">
             <SearchBar 
                 x:Name="searchBar"
-                SearchButtonPressed="SearchButton_OnClicked"
+                SearchButtonPressed="SearchButton_OnClicked"                
                 Placeholder="Movie title..."                              
-                HorizontalOptions="Start" />
+                HorizontalOptions="StartAndExpand"
+                HeightRequest="50"/>
             <ActivityIndicator x:Name="ActInd"
                 Color="red"
                 IsRunning="false"

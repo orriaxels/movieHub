@@ -12,8 +12,10 @@ namespace movieHub
 {
     public partial class MainPage : ContentPage
     {
-        private MovieService _api;        
 
+        private MovieService _api;              
+        private List<MovieDetail> _movieList;
+        private MovieList _movieListView;
         public MainPage(MovieService api)
         {
             _api = api;            
@@ -24,10 +26,11 @@ namespace movieHub
         private async void SearchButton_OnClicked(object sender, EventArgs e)
         {
             ActInd.IsRunning = true;
-            var x = await _api.GetMovieByTitle(searchBar.Text);
-            await this.Navigation.PushAsync(new MovieList(_api, searchBar.Text));
+            _movieList = await _api.GetMovieByTitle(searchBar.Text);
+            _movieListView = new MovieList(_api, searchBar.Text); 
+            await this.Navigation.PushAsync(_movieListView);
             ActInd.IsRunning = false;
-            listView.ItemsSource = x;
-        }
+            listView.ItemsSource = _movieList;
+        }        
     }
 }
