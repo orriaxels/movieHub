@@ -18,6 +18,8 @@ namespace movieHub.Views.ListView
         private MovieService _api;
         private List<MovieDetail> _movieListFromApi;
         private List<MovieDetail> _topRatedList;
+        private List<MovieDetail> _popularList;
+
         private MovieDetail _movie;
         private String _searchText;
 
@@ -28,6 +30,7 @@ namespace movieHub.Views.ListView
             this._searchText = searchText;
             this._movieListFromApi = _api.GetMovies();
             this._topRatedList = new List<MovieDetail>();
+            this._popularList = new List<MovieDetail>();
         }
 
         public List<MovieDetail> _movieList
@@ -46,7 +49,7 @@ namespace movieHub.Views.ListView
             get => "Results for \"" + this._searchText + "\"";
         }
 
-        public List<MovieDetail> _topList
+        public List<MovieDetail> topList
         {
             get => _topRatedList;
 
@@ -54,6 +57,17 @@ namespace movieHub.Views.ListView
             {
                 this._topRatedList = value;
                 OnPropertyChanged();
+            }
+        }
+
+        public List<MovieDetail> popList
+        {
+            get => _popularList;
+
+            set
+            {
+                this._popularList = value;
+                OnPropertyChanged();              
             }
         }
 
@@ -67,9 +81,17 @@ namespace movieHub.Views.ListView
 
         public async void FetchTopRated()
         {
-            _topList = await _api.getTopRatedMovies();
+            topList = await _api.GetTopRatedMovies();
+            foreach(MovieDetail movie in this.topList)
+            {
+                movie.role = await _api.GetActorsAndRoles(movie);
+            }
+        }
 
-            foreach(MovieDetail movie in _topList)
+        public async void FetchPopularMovies()
+        {
+            popList = await _api.GetPopularMovies();
+            foreach (MovieDetail movie in this.popList)
             {
                 movie.role = await _api.GetActorsAndRoles(movie);
             }

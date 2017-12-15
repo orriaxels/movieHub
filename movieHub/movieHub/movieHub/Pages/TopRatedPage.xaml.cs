@@ -1,5 +1,4 @@
 ﻿using movieHub.Views.ListView;
-using MovieHub.Models;
 using MovieHub.Services;
 using System;
 using System.Collections.Generic;
@@ -22,7 +21,14 @@ namespace movieHub.Pages
             this._api = api;            
             _movieListViewModel = new MovieListViewModel(this.Navigation, _api, "Top Rated");
             this.BindingContext = this._movieListViewModel;
-            InitializeComponent();
-        }                
+
+            InitializeComponent();            
+        }
+
+        protected override void OnAppearing()
+        {
+            base.OnAppearing();
+            this._movieListViewModel.FetchList();
+        }
     }
 }

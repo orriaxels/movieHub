@@ -189,17 +189,11 @@ namespace MovieHub.Services
                 }
 
                 movie.genres = movieGenre;
-
-                //for (int i = 0; i < movieInfo.Item.Genres.Count; i++)
-                //{
-                //    if(i == movieInfo.Item.Genres.Count())
-                //    movie.genres.Add(movieInfo.Item.Genres[i].ToString());
-                //}
             }
             return movie;
         }
 
-        public async Task<List<MovieDetail>> getPopularMovies()
+        public async Task<List<MovieDetail>> GetPopularMovies()
         {
             ApiSearchResponse<MovieInfo> response = await _api.GetPopularAsync();
             List<MovieDetail> movies = new List<MovieDetail>();
@@ -237,7 +231,7 @@ namespace MovieHub.Services
             return movies;
         }
 
-        public async Task<List<MovieDetail>> getTopRatedMovies()
+        public async Task<List<MovieDetail>> GetTopRatedMovies()
         {            
             ApiSearchResponse<MovieInfo> response = await _api.GetTopRatedAsync();
             List<MovieDetail> movies = new List<MovieDetail>();

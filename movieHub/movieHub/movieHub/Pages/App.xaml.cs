@@ -12,20 +12,23 @@ namespace movieHub
     public partial class App : Application
     {
         private MovieService _api;
+        private MainPage _mainPage;
         private TopRatedPage _topRatedPage;
+        private PopularMoviesPage _popularMoviesPage;
+        
         
         public App()
         {
             InitializeComponent();
-            _api = new MovieService();
-            _topRatedPage = new TopRatedPage(_api);
-            var mainPage = new MainPage(_api);
-            
-            var popularMoviesPage = new PopularMoviesPage();            
 
-            var tabbedPage = new Tabbed(_api, mainPage, _topRatedPage, popularMoviesPage);
-                        
-            
+            _api = new MovieService();
+
+            _mainPage = new MainPage(_api);
+            _topRatedPage = new TopRatedPage(_api);
+            _popularMoviesPage = new PopularMoviesPage(_api);
+
+            var tabbedPage = new Tabbed(_api, _mainPage, _topRatedPage, _popularMoviesPage);
+
             MainPage = tabbedPage;
         }        
 
