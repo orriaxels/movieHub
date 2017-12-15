@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
-namespace movieHub.Views
+namespace movieHub.Pages
 {
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class PopularMoviesPage : ContentPage

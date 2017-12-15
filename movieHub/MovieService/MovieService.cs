@@ -200,7 +200,7 @@ namespace MovieHub.Services
         }
 
         public async Task<List<MovieDetail>> getTopRatedMovies()
-        {
+        {            
             ApiSearchResponse<MovieInfo> response = await _api.GetTopRatedAsync();
             List<MovieDetail> movies = new List<MovieDetail>();
 

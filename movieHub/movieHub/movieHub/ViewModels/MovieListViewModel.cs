@@ -17,17 +17,17 @@ namespace movieHub.Views.ListView
         private INavigation _navigation;
         private MovieService _api;
         private List<MovieDetail> _movieListFromApi;
-        public List<MovieDetail> _topRatedList;
+        private List<MovieDetail> _topRatedList;
         private MovieDetail _movie;
         private String _searchText;
 
         public MovieListViewModel(INavigation navigation, MovieService api, string searchText)
-        {                                   
-            //this._topRatedList = _api.GetMovies();
+        {                                               
             this._navigation = navigation;
             this._api = api;
             this._searchText = searchText;
             this._movieListFromApi = _api.GetMovies();
+            this._topRatedList = new List<MovieDetail>();
         }
 
         public List<MovieDetail> _movieList
@@ -46,10 +46,16 @@ namespace movieHub.Views.ListView
             get => "Results for \"" + this._searchText + "\"";
         }
 
-        //public List<MovieDetail> _topList
-        //{
-        //    get => _topRatedList;
-        //}       
+        public List<MovieDetail> _topList
+        {
+            get => _topRatedList;
+
+            set
+            {
+                this._topRatedList = value;
+                OnPropertyChanged();
+            }
+        }
 
         public async void FetchList()
 
@@ -60,10 +66,10 @@ namespace movieHub.Views.ListView
             }
         }
 
-        //public async void FetchTopRated()
-        //{
-        //    await _api.getTopRatedMovies();
-        //}
+        public async void FetchTopRated()
+        {
+            _topRatedList = await _api.GetMovieByTitle("Thor");
+        }
 
         public MovieDetail SelectedMovie
         {
