@@ -17,6 +17,7 @@
                     Type=RelativeToParent,  
                     Property=Height,  
                     Factor=1}"
+                RelativeLayout.YConstraint="{ConstraintExpression Type=RelativeToParent, Property=Y, Factor=0, Constant=25}"
                 HorizontalOptions="StartAndExpand"
                 VerticalOptions="StartAndExpand"/> 
                 
@@ -55,10 +56,16 @@
                 RelativeLayout.YConstraint="{ConstraintExpression Type=RelativeToParent, Property=Y, Factor=0, Constant=250}" 
                 RelativeLayout.XConstraint="{ConstraintExpression Type=RelativeToParent, Property=X, Factor=0, Constant=180}"/>          
                 --> 
-           <Label x:Name="overView"
+<!--           <Label x:Name="overView"
                 Text="{Binding Movie.overView}"
                 FontSize="Small"
-                RelativeLayout.YConstraint="{ConstraintExpression ElementName=Over Type=RelativeToParent, Property=Y, Factor=0, Constant=430}" 
+                RelativeLayout.YConstraint="{ConstraintExpression ElementName=Over Type=RelativeToParent, Property=Y, Factor=0, Constant=10}" 
+                RelativeLayout.XConstraint="{ConstraintExpression Type=RelativeToParent, Property=X, Factor=0, Constant=10}"
+                />-->
+            <Label x:Name="tagLine"
+                Text="{Binding Movie.tag}"
+                FontSize="Micro"
+                RelativeLayout.YConstraint="{ConstraintExpression Type=RelativeToParent, Property=Y, Factor=0, Constant=5}" 
                 RelativeLayout.XConstraint="{ConstraintExpression Type=RelativeToParent, Property=X, Factor=0, Constant=10}"
                 />
         </RelativeLayout>

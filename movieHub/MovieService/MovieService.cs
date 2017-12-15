@@ -66,7 +66,8 @@ namespace MovieHub.Services
                         actors = new List<String>(),
                         characters = new List<String>(),
                         cast = new List<Cast>(),
-                        backDrop = imageURI + info.BackdropPath
+                        backDrop = imageURI + info.BackdropPath,
+                        description = info.Overview
                     });
                 }
             }
@@ -223,7 +224,8 @@ namespace MovieHub.Services
                         actors = new List<String>(),
                         characters = new List<String>(),
                         cast = new List<Cast>(),
-                        backDrop = imageURI + info.BackdropPath
+                        backDrop = imageURI + info.BackdropPath,
+                        description = info.Overview
                     });
                 }
             }
@@ -261,7 +263,8 @@ namespace MovieHub.Services
                         actors = new List<String>(),
                         characters = new List<String>(),
                         cast = new List<Cast>(),
-                        backDrop = imageURI + info.BackdropPath
+                        backDrop = imageURI + info.BackdropPath,
+                        description = info.Overview
                     });
                 }
             }

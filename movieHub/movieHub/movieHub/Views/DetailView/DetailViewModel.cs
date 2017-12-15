@@ -16,6 +16,7 @@ namespace movieHub.Views.DetailView
         {
             this._movie = movie;
             this._api = api;
+
         }
 
         public MovieDetail Movie
@@ -29,18 +30,15 @@ namespace movieHub.Views.DetailView
             }
         }
 
-        public async Task FetchMovieDetail()
+        public async void FetchMovieDetail()
         {
             var fetchedMovie = await _api.GetMovieDetail(this._movie.id);
            
             _movie.runLength = fetchedMovie.runtime;
-            _movie.overView = fetchedMovie.description;
             _movie.tag = fetchedMovie.tagLine;
             _movie.cashMoney = fetchedMovie.budget;
             _movie.allGenres = fetchedMovie.genres;
         }
-
-
 
         public event PropertyChangedEventHandler PropertyChanged;
 
