@@ -1,4 +1,4 @@
-﻿using movieHub.Views;
+﻿using movieHub.Pages;
 using MovieHub.Services;
 using System;
 using System.Collections.Generic;
@@ -29,12 +29,17 @@ namespace movieHub
             popularMoviesNavigationPage.Title = "Popular";
 
             var tabbedPage = new Tabbed(_api);
-            tabbedPage.Children.Add(mainNavigationPage);
             tabbedPage.Children.Add(topRatedNavigationPage);
+            tabbedPage.Children.Add(mainNavigationPage);            
             tabbedPage.Children.Add(popularMoviesNavigationPage);
             
             MainPage = tabbedPage;
         }
+
+        //private async void get()
+        //{
+        //    await _api.GetMovieByTitle("thor");
+        //}
 
         protected override void OnStart()
         {

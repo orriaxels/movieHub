@@ -16,10 +16,10 @@ namespace movieHub.Views.DetailView
             InitializeComponent();
         }
 
-        protected override void OnAppearing()
+        protected async override void OnAppearing()
         {
             base.OnAppearing();
-            this._detailViewModel.FetchMovieDetail();
+            await this._detailViewModel.FetchMovieDetail();
         }
     }
 }

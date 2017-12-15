@@ -13,16 +13,16 @@ namespace movieHub
     class Tabbed : TabbedPage
      {
         MovieService _api;
-        //MovieListViewModel _movieListViewModel;
+        MovieListViewModel _movieListViewModel;
         public Tabbed(MovieService api)
         {
             _api = api;
-           // _movieListViewModel = new MovieListViewModel(this.Navigation, _api);
-            OnAppearing();
+            _movieListViewModel = new MovieListViewModel(this.Navigation, _api, null);            
         }
         protected override void OnAppearing()
         {
-            //_movieListViewModel.FetchTopRated();
+            base.OnAppearing();
+            _movieListViewModel.FetchTopRated();
         }
     }
 }
