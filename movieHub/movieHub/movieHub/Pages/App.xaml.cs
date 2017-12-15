@@ -14,7 +14,8 @@ namespace movieHub
         private MovieService _api;
         private MainPage _mainPage;
         private TopRatedPage _topRatedPage;
-        private PopularMoviesPage _popularMoviesPage;        
+        private PopularMoviesPage _popularMoviesPage;
+        
         
         public App()
         {

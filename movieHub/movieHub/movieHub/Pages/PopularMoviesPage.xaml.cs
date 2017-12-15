@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
@@ -19,7 +20,7 @@ namespace movieHub.Pages
         public PopularMoviesPage(MovieService api)
         {
             this._api = api;
-            _movieListViewModel = new MovieListViewModel(this.Navigation, _api, "Most popular");
+            _movieListViewModel = new MovieListViewModel(this.Navigation, _api, "Most Popular");
             this.BindingContext = this._movieListViewModel;
             InitializeComponent();
         }

@@ -49,7 +49,7 @@ namespace movieHub.Views.ListView
             get => "Results for \"" + this._searchText + "\"";
         }
 
-        public List<MovieDetail> _topList
+        public List<MovieDetail> topList
         {
             get => _topRatedList;
 
@@ -60,14 +60,14 @@ namespace movieHub.Views.ListView
             }
         }
 
-        public List<MovieDetail> _popList
+        public List<MovieDetail> popList
         {
             get => _popularList;
 
             set
             {
                 this._popularList = value;
-                OnPropertyChanged();
+                OnPropertyChanged();              
             }
         }
 
@@ -81,12 +81,12 @@ namespace movieHub.Views.ListView
 
         public async void FetchTopRated()
         {
-            _topList = await _api.GetTopRatedMovies();
+            topList = await _api.GetTopRatedMovies();
         }
 
         public async void FetchPopularMovies()
         {
-            _popList = await _api.GetTopRatedMovies();
+            popList = await _api.GetPopularMovies();            
         }
 
         public MovieDetail SelectedMovie
