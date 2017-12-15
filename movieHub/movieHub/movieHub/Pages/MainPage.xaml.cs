@@ -7,14 +7,15 @@ using System.Text;
 using System.Threading.Tasks;
 using Xamarin.Forms;
 using movieHub.Views.ListView;
+using System.ComponentModel;
+using System.Runtime.CompilerServices;
 
 namespace movieHub
 {
-    public partial class MainPage : ContentPage
+    public partial class MainPage : ContentPage, INotifyPropertyChanged
     {
         private MovieService _api;
         private List<MovieDetail> _movieList;
-        private MovieList _movieListView;
         private MovieListViewModel _movieListViewModel;
         public MainPage(MovieService api)
         {
@@ -29,11 +30,37 @@ namespace movieHub
         private async void SearchButton_OnClicked(object sender, EventArgs e)
         {
             ActInd.IsRunning = true;
-            _movieList = await _api.GetMovieByTitle(searchBar.Text);
-            _movieListView = new MovieList(_api, searchBar.Text);            
+            this._movieList = await _api.GetMovieByTitle(searchBar.Text);
+            //this._movieList = this._movieListViewModel._movieList;
             ActInd.IsRunning = false;
-            this._movieListViewModel.FetchList();
-            listView.ItemsSource = _movieList;
-        }        
+            this.FetchList();
+            listView.ItemsSource = movies;
+        }
+
+        public List<MovieDetail> movies
+        {
+            get => _movieList;
+
+            set
+            {
+                this._movieList = value;
+                OnPropertyChanged();
+            }
+        }
+
+        public async void FetchList()
+        {
+            foreach (MovieDetail movie in this._movieList)
+            {
+                movie.role = await _api.GetActorsAndRoles(movie);
+            }
+        }
+
+        public event PropertyChangedEventHandler PropertyChanged;
+
+        protected virtual void OnPropertyChanged([CallerMemberName] string propertyName = null)
+        {
+            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
+        }
     }
 }

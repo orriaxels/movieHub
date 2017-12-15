@@ -28,7 +28,6 @@ namespace movieHub.Pages
         protected override void OnAppearing()
         {
             base.OnAppearing();
-            this._movieListViewModel.FetchList();
         }
     }
 }

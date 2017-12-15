@@ -27,7 +27,6 @@ namespace movieHub.Views.ListView
         protected override void OnAppearing()
         {
             base.OnAppearing();
-            this._movieListViewModel.FetchList();
         }
     }
 }
