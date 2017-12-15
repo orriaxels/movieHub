@@ -33,12 +33,14 @@ namespace movieHub.Views.DetailView
         {
             var fetchedMovie = await _api.GetMovieDetail(this._movie.id);
            
-            _movie.runtime = fetchedMovie.runtime;
-            _movie.description = fetchedMovie.description;
-            _movie.tagLine = fetchedMovie.tagLine;
-            _movie.budget = fetchedMovie.budget;
-            _movie.genres = fetchedMovie.genres;
+            _movie.runLength = fetchedMovie.runtime;
+            _movie.overView = fetchedMovie.description;
+            _movie.tag = fetchedMovie.tagLine;
+            _movie.cashMoney = fetchedMovie.budget;
+            _movie.allGenres = fetchedMovie.genres;
         }
+
+
 
         public event PropertyChangedEventHandler PropertyChanged;
 

@@ -9,21 +9,14 @@ namespace movieHub.Views.DetailView
     public partial class Detail : ContentPage
     {
         private DetailViewModel _detailViewModel;
-        private double _backdropHeight;
+        private MovieDetail _movie;
         public Detail(MovieDetail movie, MovieService api)
         {
+            this._movie = movie;
             _detailViewModel = new DetailViewModel(movie, api);
             this.BindingContext = this._detailViewModel;
             InitializeComponent();
-
-            //this.Padding = new Thickness(10, Device.OnPlatform(20, 0, 0), 10, 5);
-
-            Image backDrop = new Image()
-            {
-                Source = movie.backDrop,
-                HorizontalOptions = LayoutOptions.StartAndExpand,
-            };
-
+       
             BoxView posterBorder = new BoxView()
             {
                 Color = Color.White,
@@ -32,16 +25,38 @@ namespace movieHub.Views.DetailView
 
             };
 
-            RelativeLayout relativeLayout = new RelativeLayout();
+            Image posterImage = new Image()
+            {
+                Source = movie.imageUrl,
+                HeightRequest = 240,
+                WidthRequest = 160
+            };
 
-            Func<RelativeLayout, double> getBackDropImageHeight = (p) => backDrop.Measure(relativeLayout.Width, relativeLayout.Height).Request.Height;
-            Func<RelativeLayout, double> getBackDropImageWidth= (p) => backDrop.Measure(relativeLayout.Width, relativeLayout.Height).Request.Width;
+            Label rating = new Label()
+            {
+                Text = "Rating: " + movie.voteAverage.ToString(),
+                FontSize = Device.GetNamedSize(NamedSize.Small, typeof(Label)),
+                TextColor = Color.FromHex("#555555"),
+            };
 
-            relativeLayout.Children.Add(backDrop, Constraint.RelativeToParent((parent) => {
-                return 0;
-            }));
+            //Label overView = new Label()
+            //{
+            //    FontSize = Device.GetNamedSize(NamedSize.Small, typeof(Label)),
+            //    WidthRequest = this.detailLayout.Width
+            //};
 
-            relativeLayout.Children.Add(posterBorder,
+
+            Label actors = new Label()
+            {
+                Text = this._detailViewModel.Movie.role,
+                FontSize = Device.GetNamedSize(NamedSize.Micro, typeof(Label)),
+                WidthRequest = 200
+            };
+
+            Func<RelativeLayout, double> getBackDropImageHeight = (p) => this.backdropImage.Measure(this.detailLayout.Width, this.detailLayout.Height).Request.Height;
+            Func<RelativeLayout, double> getBackDropImageWidth= (p) => this.backdropImage.Measure(this.detailLayout.Width, this.detailLayout.Height).Request.Width;
+
+            this.detailLayout.Children.Add(posterBorder,
                 Constraint.RelativeToParent((parent) =>
                 {
                     return 10;
@@ -52,14 +67,7 @@ namespace movieHub.Views.DetailView
                 })
             );
 
-            Image posterImage = new Image()
-            {
-                Source = movie.imageUrl,
-                HeightRequest = 240,
-                WidthRequest = 160
-            };
-
-            relativeLayout.Children.Add(posterImage,
+            this.detailLayout.Children.Add(posterImage,
                 Constraint.RelativeToParent((parent) =>
                 {
                     return 13;
@@ -69,8 +77,30 @@ namespace movieHub.Views.DetailView
                     return getBackDropImageHeight(parent) - 27;
                 })
             );
-            
-            this.Content = relativeLayout;
+
+            this.detailLayout.Children.Add(rating,
+                Constraint.RelativeToParent((parent) =>
+                {
+                    return 180;
+                }),
+                Constraint.RelativeToParent((parent) =>
+                {
+                    return getBackDropImageHeight(parent) + 10;
+                })
+            );
+
+            this.detailLayout.Children.Add(actors,
+                Constraint.RelativeToParent((parent) =>
+                {
+                    return 180;
+                }),
+                Constraint.RelativeToParent((parent) =>
+                {
+                    return getBackDropImageHeight(parent) + 30;
+                })
+            );
+
+            this.detailLayout.FindByName<Label>("overView");
         }
 
         protected async override void OnAppearing()

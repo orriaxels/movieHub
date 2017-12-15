@@ -4,11 +4,11 @@
                 x:Class="movieHub.Views.DetailView.Detail"
                 Title="{Binding Movie.title}">
 	<ContentPage.Content>
-        <ScrollView>
+        <ScrollView
+            Orientation="Vertical">
             <RelativeLayout
-                x:Name="detailLayout"
-                RelativeLayout.WidthConstraint="{ConstraintExpression Type=RelativeToParent,Property=Width,Factor=1}">
-<!--            <Image x:Name="backdropImage" Source="{Binding Movie.backDrop}" 
+                x:Name="detailLayout">
+            <Image x:Name="backdropImage" Source="{Binding Movie.backDrop}" 
                 RelativeLayout.WidthConstraint="{ConstraintExpression  
                     Type=RelativeToParent,  
                     Property=Width,  
@@ -20,21 +20,22 @@
                 HorizontalOptions="StartAndExpand"
                 VerticalOptions="StartAndExpand"/> 
                 
-            <BoxView x:Name ="posterBackGround" 
+<!--            <BoxView x:Name ="posterBackGround" 
                 Color="White"
                 HeightRequest="246"
                 WidthRequest="166"
                 RelativeLayout.YConstraint="{ConstraintExpression Type=RelativeToParent, Property=Y, Factor=0, Constant=137}" 
-                RelativeLayout.XConstraint="{ConstraintExpression Type=RelativeToParent, Property=X, Factor=0, Constant=7}" />                
+                RelativeLayout.XConstraint="{ConstraintExpression Type=RelativeToParent, Property=X, Factor=0, Constant=7}" 
+                />  -->              
 
-            <Image x:Name ="poster" 
+<!--            <Image x:Name ="poster" 
                 Source="{Binding Movie.imageUrl}"
                 HeightRequest="240"
                 WidthRequest="160"
                 RelativeLayout.YConstraint="{ConstraintExpression Type=RelativeToParent, Property=Y, Factor=0, Constant=140}" 
-                RelativeLayout.XConstraint="{ConstraintExpression Type=RelativeToParent, Property=X, Factor=1, Constant=10}" />
+                RelativeLayout.XConstraint="{ConstraintExpression Type=RelativeToParent, Property=X, Factor=1, Constant=10}" />-->
             
-            <Label x:Name="StarImage"
+<!--            <Label x:Name="StarImage"
                 Text="&#9733;"
                 FontSize="Large"
                 TextColor="#555555"
@@ -45,19 +46,21 @@
                 FontSize="Medium"
                 TextColor="#555555"
                 RelativeLayout.YConstraint="{ConstraintExpression Type=RelativeToParent, Property=Y, Factor=0, Constant=225}" 
-                RelativeLayout.XConstraint="{ConstraintExpression Type=RelativeToParent, Property=X, Factor=0, Constant=205}"/>               
-
+                RelativeLayout.XConstraint="{ConstraintExpression Type=RelativeToParent, Property=X, Factor=0, Constant=205}"/>      -->         
+<!--
             <Label x:Name="budget"
                 Text="$ 100.000.000"
                 FontSize="Medium"
                 TextColor="#555555"
                 RelativeLayout.YConstraint="{ConstraintExpression Type=RelativeToParent, Property=Y, Factor=0, Constant=250}" 
                 RelativeLayout.XConstraint="{ConstraintExpression Type=RelativeToParent, Property=X, Factor=0, Constant=180}"/>          
-
-            <Label x:Name="actors"
-                Text="{Binding Movie.runLength}"
-                RelativeLayout.YConstraint="{ConstraintExpression Type=RelativeToParent, Property=Y, Factor=0, Constant=220}" 
-                RelativeLayout.XConstraint="{ConstraintExpression Type=RelativeToParent, Property=X, Factor=0, Constant=180}"/>   -->          
+                --> 
+           <Label x:Name="overView"
+                Text="{Binding Movie.overView}"
+                FontSize="Small"
+                RelativeLayout.YConstraint="{ConstraintExpression ElementName=Over Type=RelativeToParent, Property=Y, Factor=0, Constant=430}" 
+                RelativeLayout.XConstraint="{ConstraintExpression Type=RelativeToParent, Property=X, Factor=0, Constant=10}"
+                />
         </RelativeLayout>
         </ScrollView>
 	</ContentPage.Content>

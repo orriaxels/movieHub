@@ -68,6 +68,11 @@ namespace movieHub.Views.ListView
         public async void FetchTopRated()
         {
             _topList = await _api.getTopRatedMovies();
+
+            foreach(MovieDetail movie in _topList)
+            {
+                movie.role = await _api.GetActorsAndRoles(movie);
+            }
         }
 
         public MovieDetail SelectedMovie

@@ -82,6 +82,17 @@ namespace MovieHub.Models
             }
         }
 
+        public String allGenres
+        {
+            get => genres;
+
+            set
+            {
+                this.genres = value;
+                OnPropertyChanged();
+            }
+        }
+
         public event PropertyChangedEventHandler PropertyChanged;
 
         protected virtual void OnPropertyChanged([CallerMemberName] string propertyName = null)
