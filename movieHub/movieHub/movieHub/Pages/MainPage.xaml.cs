@@ -18,10 +18,10 @@ namespace movieHub
         private MovieListViewModel _movieListViewModel;
         public MainPage(MovieService api)
         {
-            _api = api;            
+            _api = api;
             _movieListViewModel = new MovieListViewModel(this.Navigation, _api, null);
             this.BindingContext = this._movieListViewModel;
-
+            _movieList = new List<MovieDetail>();
             InitializeComponent();
         }
 

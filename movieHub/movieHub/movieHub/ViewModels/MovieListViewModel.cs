@@ -73,6 +73,7 @@ namespace movieHub.Views.ListView
 
         public async void FetchList()
         {
+            _movieList = await _api.GetMovieByTitle(this._searchText);
             foreach(MovieDetail movie in this._movieListFromApi)
             {
                 movie.role = await _api.GetActorsAndRoles(movie);
