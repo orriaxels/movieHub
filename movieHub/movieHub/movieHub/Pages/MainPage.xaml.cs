@@ -31,7 +31,6 @@ namespace movieHub
         {
             ActInd.IsRunning = true;
             this._movieList = await _api.GetMovieByTitle(searchBar.Text);
-            //this._movieList = this._movieListViewModel._movieList;
             ActInd.IsRunning = false;
             this.FetchList();
             listView.ItemsSource = movies;
@@ -53,6 +52,16 @@ namespace movieHub
             foreach (MovieDetail movie in this._movieList)
             {
                 movie.role = await _api.GetActorsAndRoles(movie);
+            }
+        }
+
+        protected override void OnAppearing()
+        {
+            base.OnAppearing();
+
+            if (this._movieListViewModel.SelectedMovie != null)
+            {
+                listView.SelectedItem = null;
             }
         }
 

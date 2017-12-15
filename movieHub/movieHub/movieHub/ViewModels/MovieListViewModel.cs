@@ -31,6 +31,7 @@ namespace movieHub.Views.ListView
             this._movieListFromApi = _api.GetMovies();
             this._topRatedList = new List<MovieDetail>();
             this._popularList = new List<MovieDetail>();
+
         }
 
         public List<MovieDetail> _movieList

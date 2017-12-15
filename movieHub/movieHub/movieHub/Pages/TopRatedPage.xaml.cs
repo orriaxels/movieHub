@@ -28,6 +28,12 @@ namespace movieHub.Pages
         protected override void OnAppearing()
         {
             base.OnAppearing();
+
+            if(this._movieListViewModel.SelectedMovie != null)
+            {
+                ListView.SelectedItem = null;
+            }
+           
         }
     }
 }
