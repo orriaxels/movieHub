@@ -12,8 +12,7 @@ namespace movieHub
 {
     public partial class MainPage : ContentPage
     {
-
-        private MovieService _api;              
+        private MovieService _api;
         private List<MovieDetail> _movieList;
         private MovieList _movieListView;
         public MainPage(MovieService api)
@@ -31,6 +30,6 @@ namespace movieHub
             await this.Navigation.PushAsync(_movieListView);
             ActInd.IsRunning = false;
             listView.ItemsSource = _movieList;
-        }        
+        }
     }
 }
