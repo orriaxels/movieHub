@@ -23,6 +23,12 @@ namespace movieHub.Pages
             this.BindingContext = this._movieListViewModel;
 
             InitializeComponent();            
-        }                
+        }
+
+        protected override void OnAppearing()
+        {
+            base.OnAppearing();
+            this._movieListViewModel.FetchList();
+        }
     }
 }

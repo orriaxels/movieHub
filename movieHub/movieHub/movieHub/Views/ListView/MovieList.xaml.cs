@@ -21,13 +21,13 @@ namespace movieHub.Views.ListView
             this._api = api;
             _movieListViewModel = new MovieListViewModel(this.Navigation, _api, searchText);
             this.BindingContext = this._movieListViewModel;
-            InitializeComponent();        
+            InitializeComponent();
         }
 
         protected override void OnAppearing()
-        {                     
+        {
             base.OnAppearing();
-            this._movieListViewModel.FetchList();            
+            this._movieListViewModel.FetchList();
         }
     }
 }
