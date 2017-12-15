@@ -11,35 +11,23 @@ namespace movieHub
 {
     public partial class App : Application
     {
-        MovieService _api = new MovieService();
+        private MovieService _api;
+        private TopRatedPage _topRatedPage;
+        
         public App()
         {
             InitializeComponent();
-
+            _api = new MovieService();
+            _topRatedPage = new TopRatedPage(_api);
             var mainPage = new MainPage(_api);
-            var mainNavigationPage = new NavigationPage(mainPage);
-            mainNavigationPage.Title = "Search";
+            
+            var popularMoviesPage = new PopularMoviesPage();            
 
-            var topRatedPage = new TopRatedPage(_api);
-            var topRatedNavigationPage = new NavigationPage(topRatedPage);
-            topRatedNavigationPage.Title = "Top rated";
-
-            var popularMoviesPage = new PopularMoviesPage();
-            var popularMoviesNavigationPage = new NavigationPage(popularMoviesPage);
-            popularMoviesNavigationPage.Title = "Popular";
-
-            var tabbedPage = new Tabbed(_api);
-            tabbedPage.Children.Add(topRatedNavigationPage);
-            tabbedPage.Children.Add(mainNavigationPage);            
-            tabbedPage.Children.Add(popularMoviesNavigationPage);
+            var tabbedPage = new Tabbed(_api, mainPage, _topRatedPage, popularMoviesPage);
+                        
             
             MainPage = tabbedPage;
-        }
-
-        //private async void get()
-        //{
-        //    await _api.GetMovieByTitle("thor");
-        //}
+        }        
 
         protected override void OnStart()
         {

@@ -12,7 +12,7 @@ namespace movieHub
 {
     public partial class MainPage : ContentPage
     {
-        private MovieService _api;
+        private MovieService _api;        
 
         public MainPage(MovieService api)
         {

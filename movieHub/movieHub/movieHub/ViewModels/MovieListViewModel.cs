@@ -58,7 +58,6 @@ namespace movieHub.Views.ListView
         }
 
         public async void FetchList()
-
         {
             foreach(MovieDetail movie in this._movieListFromApi)
             {
@@ -68,7 +67,7 @@ namespace movieHub.Views.ListView
 
         public async void FetchTopRated()
         {
-            _topRatedList = await _api.GetMovieByTitle("Thor");
+            _topList = await _api.getTopRatedMovies();
         }
 
         public MovieDetail SelectedMovie

@@ -15,25 +15,14 @@ namespace movieHub.Pages
     public partial class TopRatedPage : ContentPage
     {
         private MovieService _api;
-        private MovieListViewModel _movieListViewModel;
-        private Tabbed _tabbed;
+        public readonly MovieListViewModel _movieListViewModel;
 
         public TopRatedPage(MovieService api)
         {            
-            this._api = api;
-            //this._tabbed = new Tabbed(_api);
-            _movieListViewModel = new MovieListViewModel(this.Navigation, _api, "star wars");
+            this._api = api;            
+            _movieListViewModel = new MovieListViewModel(this.Navigation, _api, "Top Rated");
             this.BindingContext = this._movieListViewModel;
-            InitializeComponent();            
-        }
-
-        protected override void OnAppearing()
-        {
-            base.OnAppearing();
-            _movieListViewModel.FetchTopRated();
-            //await _api.GetMovieByTitle("Thor");
-            //await _api.getTopRatedMovies();
-            //await this.Navigation.PushAsync(new MovieList(_api, "top rated"));
-        }
+            InitializeComponent();
+        }                
     }
 }
