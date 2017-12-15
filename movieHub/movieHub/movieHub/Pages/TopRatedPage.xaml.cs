@@ -1,5 +1,4 @@
 ﻿using movieHub.Views.ListView;
-using MovieHub.Models;
 using MovieHub.Services;
 using System;
 using System.Collections.Generic;

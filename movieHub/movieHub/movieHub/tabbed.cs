@@ -30,8 +30,10 @@ namespace movieHub
         protected override void OnAppearing()
         {
             base.OnAppearing();
-            System.Diagnostics.Debug.WriteLine("fetching top rated movies...");
+
+            _mostPopularPage._movieListViewModel.FetchPopularMovies();
             _topRatedPage._movieListViewModel.FetchTopRated();
+
         }
 
         private void addChildren()
